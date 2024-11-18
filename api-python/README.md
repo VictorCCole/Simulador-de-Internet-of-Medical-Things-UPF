@@ -8,7 +8,7 @@ Esta API fornece acesso a informações sobre dados coletados, permitindo opera�
 
 A base URL da API em fase de teste é:  
 `http://127.0.0.1:8000/dadosColetados/`
-
+IDs fornecidos devem ser do tipo inteiro.
 #### 1. **GET /dadosColetados/**
 
 Este endpoint retorna todos os dados coletados cadastrados.
