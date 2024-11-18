@@ -1,6 +1,6 @@
 # API
 
-## API de Dados Coletados
+## Dados Coletados
 
 Esta API fornece acesso a informações sobre dados coletados, permitindo operações de **GET**, **POST**, **PUT** e **DELETE**. Abaixo estão as instruções detalhadas sobre como usar os diferentes endpoints disponíveis para interagir com os dados coletados.
 
