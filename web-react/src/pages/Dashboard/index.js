@@ -1,20 +1,16 @@
 // src/pages/Dashboard/index.js
 import React from 'react';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  padding: 20px;
-`;
-
-const Title = styled.h1`
-  color: #333;
-`;
+import { DashboardContainer, Card, Title } from './styles';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 const Dashboard = () => {
   return (
-    <Container>
+    <DashboardContainer>
       <Title>Dashboard IoMT</Title>
-    </Container>
+      <Card>
+        // Conteúdo do card
+      </Card>
+    </DashboardContainer>
   );
 };
 
