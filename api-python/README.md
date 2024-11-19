@@ -198,6 +198,20 @@ Exemplo de configuração para banco de dados em nuvem:
 DATABASE_URL = "postgresql://myuser:mypassword@mydbhost:5432/mydatabase"
 ```
 
+Adicione o parâmetro `?sslmode=require` à URL se o banco exigir conexões seguras (caso em Nuvem):
+
+```python
+DATABASE_URL = "postgresql://username:password@db-instance-endpoint:5432/dbname?sslmode=require"
+```
+
+Se usarmos variáveis de ambiente em vez de codificar diretamente:
+
+```python
+import os
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+```
+
 ---
 
 ### Erros Comuns
