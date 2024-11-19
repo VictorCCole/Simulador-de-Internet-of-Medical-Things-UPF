@@ -51,7 +51,7 @@ export const Divider = styled.hr`
   height: 2px;
   left: -2px;
   position: absolute;
-  top: 48px;
+  top: 55px;
   width: 1880px;
   background: #a7a7a7;
   border: none;
