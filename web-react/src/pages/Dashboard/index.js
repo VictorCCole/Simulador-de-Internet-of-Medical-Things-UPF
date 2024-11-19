@@ -1,16 +1,13 @@
-// src/pages/Dashboard/index.js
 import React from 'react';
-import { DashboardContainer, Card, Title } from './styles';
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import Title from '../../components/Title';
+import DataTable from '../../components/DataTable';
 
 const Dashboard = () => {
   return (
-    <DashboardContainer>
-      <Title>Dashboard IoMT</Title>
-      <Card>
-        // Conteúdo do card
-      </Card>
-    </DashboardContainer>
+    <>
+      <Title />
+      <DataTable />
+    </>
   );
 };
 

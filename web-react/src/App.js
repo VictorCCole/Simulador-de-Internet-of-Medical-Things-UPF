@@ -1,47 +1,22 @@
-// src/App.js
 import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
-import Login from './pages/Login';
-import Register from './pages/Register';
 import DataEntry from './pages/DataEntry';
-
-const Nav = styled.nav`
-  background: #1a365d;
-  padding: 1rem;
-  color: white;
-`;
-
-const NavMenu = styled.div`
-  display: flex;
-  gap: 2rem;
-  a {
-    color: white;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-`;
+import Register from './pages/Register';
 
 function App() {
   return (
-    <>
-      <Nav>
-        <NavMenu>
-          <Link to="/">Dashboard</Link>
-          <Link to="/data-entry">Entrada de Dados</Link>
-          <Link to="/register">Cadastro</Link>
-        </NavMenu>
-      </Nav>
+    <Layout>
+      <Header />
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/data-entry" element={<DataEntry />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/criar-dados" element={<DataEntry />} />
+        <Route path="/editar-dados" element={<Register />} />
         <Route path="/" element={<Dashboard />} />
       </Routes>
-    </>
+    </Layout>
   );
 }
 
