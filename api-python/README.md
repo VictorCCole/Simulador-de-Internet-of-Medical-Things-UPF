@@ -1,5 +1,7 @@
 # API
 
+As tabelas são criadas automaticamente pela API.
+
 <br/>
 
 ## Usuario
