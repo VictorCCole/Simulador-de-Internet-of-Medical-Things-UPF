@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
 import DataEntry from './pages/DataEntry';
 import Register from './pages/Register';
+import UserRegistration from './pages/UserRegistration';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/criar-dados" element={<DataEntry />} />
         <Route path="/editar-dados" element={<Register />} />
+        <Route path="/cadastrar-usuarios" element={<UserRegistration />} /> 
         <Route path="/" element={<Dashboard />} />
       </Routes>
     </Layout>

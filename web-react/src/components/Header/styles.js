@@ -30,6 +30,7 @@ export const NavButton = styled.div`
   top: 5px;
   width: ${props => props.width}px;
   left: ${props => props.left}px;
+  cursor: pointer;
 `;
 
 export const Icon = styled.img`
@@ -40,7 +41,7 @@ export const Icon = styled.img`
 
 export const Text = styled.div`
   color: #ffffff;
-  font-family: "Impact-Regular", Helvetica;
+  font-family: "Impact", Helvetica;
   font-size: 29px;
   font-weight: 400;
   letter-spacing: 0;

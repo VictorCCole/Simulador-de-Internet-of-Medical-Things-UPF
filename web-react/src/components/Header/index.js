@@ -4,6 +4,7 @@ import { HeaderContainer, HeaderBox, NavButton, Icon, Text } from "./styles";
 import dashboardIcon from "../../img/icon.png";
 import criarDadosIcon from "../../img/image.png";
 import editarDadosIcon from "../../img/icon-2.png";
+import userIcon from "../../img/usericon.png";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -39,6 +40,16 @@ const Header = () => {
         >
           <Icon src={editarDadosIcon} alt="Editar Dados" />
           <Text>Editar dados</Text>
+        </NavButton>
+
+        <NavButton 
+          width={302} 
+          left={910} 
+          onClick={() => navigate("/cadastrar-usuarios")}
+          style={{ cursor: 'pointer' }}
+        >
+          <Icon src={userIcon} alt="Cadastrar Usuários" />
+          <Text>Cadastrar Usuários</Text>
         </NavButton>
       </HeaderBox>
     </HeaderContainer>
