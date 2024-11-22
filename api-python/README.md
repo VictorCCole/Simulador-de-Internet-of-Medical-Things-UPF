@@ -2,6 +2,12 @@
 
 As tabelas são criadas automaticamente pela API.
 
+Para rodar a API use:
+
+```Bash
+uvicorn main:app --reload
+```
+
 <br/>
 
 ## Usuario
