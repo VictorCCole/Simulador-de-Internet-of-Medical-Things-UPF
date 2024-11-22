@@ -17,11 +17,15 @@ def validar_dados(dado: DadosColetados):
     if dado.Tipo == 1:
         if not (0 <= dado.Valor1 <= 300):
             raise ValueError("Valor1 deve estar entre 0 e 300 para Tipo 1.")
+        if dado.Valor2 is None:
+            raise ValueError("Valor2 não pode ser None para Tipo 1.")
         if not (0 <= dado.Valor2 <= 300):
             raise ValueError("Valor2 deve estar entre 0 e 300 para Tipo 1.")
     elif dado.Tipo == 2:
         if not (0 <= dado.Valor1 <= 100):
             raise ValueError("Valor1 deve estar entre 0 e 100 para Tipo 2.")
+        if dado.Valor2 is None:
+            raise ValueError("Valor2 não pode ser None para Tipo 2.")
         if not (0 <= dado.Valor2 <= 200):
             raise ValueError("Valor2 deve estar entre 0 e 200 para Tipo 2.")
     elif dado.Tipo == 3:
@@ -29,7 +33,6 @@ def validar_dados(dado: DadosColetados):
             raise ValueError("Valor1 deve estar entre 30 e 45 para Tipo 3.")
         if dado.Valor2 is not None:
             raise ValueError("Valor2 deve ser None para Tipo 3.")
-
     if dado.EmCasa is None:
         raise ValueError("O campo EmCasa não pode ser None.")
 
