@@ -10,7 +10,8 @@ import {
   InputRectangle,
   InputFrame,
   InputField,
-  SelectField
+  SelectField,
+  CreateButton
 } from "./styles";
 import userBlackIcon from "../../img/userblack.png";
 
@@ -24,6 +25,11 @@ const UserRegistration = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = () => {
+    console.log('Dados do formulário:', formData);
+    // backend
   };
 
   return (
@@ -76,6 +82,10 @@ const UserRegistration = () => {
               <option value="outro">Outro</option>
             </SelectField>
           </InputGroup>
+
+          <CreateButton onClick={handleSubmit}>
+            Criar
+          </CreateButton>
         </FormContainer>
       </FormBackground>
     </div>

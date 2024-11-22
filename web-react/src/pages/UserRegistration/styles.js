@@ -32,7 +32,7 @@ export const TitleText = styled.div`
 
 export const FormBackground = styled.div`
   background-color: #e9ecef;
-  border-radius: 20px;
+  border-radius: 100px;
   box-shadow: 0px 4px 8.1px -2px #00000040;
   width: 700px;
   height: 600px;
@@ -150,5 +150,29 @@ export const SelectField = styled.select`
 
   &::-ms-expand {
     display: none;
+  }
+`;
+
+export const CreateButton = styled.button`
+  width: 431px;
+  height: 65px;
+  background-color: #90EE90;
+  border: 1px solid #78c978;
+  border-radius: 8px;
+  color: #006400;
+  font-family: "Inter-Regular", Helvetica;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+
+  &:hover {
+    background-color: #98FB98;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 `;
