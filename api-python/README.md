@@ -2,6 +2,18 @@
 
 As tabelas são criadas automaticamente pela API.
 
+Antes de executar, é necessário instalar a biblioteca **FastAPI**. Para isso, execute o seguinte comando:
+
+```bash
+pip install "fastapi[all]"
+```
+
+Pode ser necessário instalar a biblioteca SQLAlchemy caso ela não venha por padrão:
+
+```bash
+pip install sqlalchemy
+```
+
 Para rodar a API use:
 
 ```Bash
