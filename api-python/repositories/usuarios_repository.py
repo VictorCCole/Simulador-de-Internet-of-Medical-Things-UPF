@@ -1,14 +1,12 @@
 from sqlalchemy.orm import Session
 from models.usuario_model import UsuarioDB
 from schemas.usuario_schema import Usuario
-from schemas.usuario_schema import UsuarioDB
-
 
 def obter_usuarios(db: Session):
     return db.query(UsuarioDB).all()
 
-def obter_usuario_por_seq(db: Session, seq: int):
-    return db.query(UsuarioDB).filter(UsuarioDB.seq == seq).first()
+def obter_usuario_por_seq(db: Session, codigo: int):
+    return db.query(UsuarioDB).filter(UsuarioDB.codigo == codigo).first()
 
 def criar_usuario(db: Session, dados: Usuario):
     novo_dado = UsuarioDB(**dados.model_dump())
@@ -17,8 +15,8 @@ def criar_usuario(db: Session, dados: Usuario):
     db.refresh(novo_dado)
     return novo_dado
 
-def atualizar_usuario(db: Session, seq: int, dados_atualizados: Usuario):
-    dado = db.query(UsuarioDB).filter(UsuarioDB.seq == seq).first()
+def atualizar_usuario(db: Session, codigo: int, dados_atualizados: Usuario):
+    dado = db.query(UsuarioDB).filter(UsuarioDB.codigo == codigo).first()
     if not dado:
         return None
 
@@ -29,8 +27,8 @@ def atualizar_usuario(db: Session, seq: int, dados_atualizados: Usuario):
     db.refresh(dado)
     return dado
 
-def deletar_usuario(db: Session, seq: int):
-    dado = obter_usuario_por_seq(db, seq)
+def deletar_usuario(db: Session, codigo: int):
+    dado = obter_usuario_por_seq(db, codigo)
     if not dado:
         return None
     db.delete(dado)
