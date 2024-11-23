@@ -39,6 +39,19 @@ PORTA = 65432       # Número da porta
 
    Após iniciar o servidor, ele começará a escutar na porta configurada e ficará aguardando conexões dos cliente(s)/simulador(es).
 
+   ### Exemplo de dado aceito pelo servidor (devem estar no formato JSON):
+
+   ```JSON
+   {
+       "codigo": 1,
+       "DataHora": "2024-11-14T10:30:00",
+       "Tipo": 1,
+       "Valor1": 120,
+       "Valor2": 80,
+       "EmCasa": true
+   }
+   ```
+
 ## Interrompendo o Servidor
 
 Para interromper o servidor enquanto ele está em execução, basta pressionar **CTRL + C** no terminal onde o servidor está rodando. 
