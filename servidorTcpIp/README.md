@@ -47,7 +47,7 @@ Isso interromperá a execução do servidor de forma segura.
 
 ### Configuração do Banco de Dados
 
-No arquivo `db/database.py`, você encontrará a variável `DATABASE_URL` com o seguinte valor:
+No arquivo `servidor.py`, você encontrará a variável `DATABASE_URL` com o seguinte valor:
 
 ```python
 DATABASE_URL = "postgresql://username:password@localhost:5432/dbname"
