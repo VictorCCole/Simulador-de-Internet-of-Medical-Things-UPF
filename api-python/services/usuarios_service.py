@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from models.usuario_model import DadosColetados
-from schemas.usuario_schema import DadosColetadosUpdate
+from models.usuario_model import Usuario
+from schemas.usuario_schema import Usuario
 from repositories.usuarios_repository.py import (
     obter_usuarios,
     obter_usuario_por_seq,
