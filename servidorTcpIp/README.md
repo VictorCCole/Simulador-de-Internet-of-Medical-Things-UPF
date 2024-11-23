@@ -1,5 +1,6 @@
 # Servidor TCP/IP em Python
 
+As tabelas serão criadas automaticamente pelo servidor, caso não existam.
 Implementação de um servidor/receptor em Python que utiliza o protocolo TCP/IP para comunicação. 
 
 ## Pré-requisitos
