@@ -6,7 +6,7 @@ from repositories.usuarios_repository.py import (
     obter_usuario_por_seq,
     criar_usuario,
     atualizar_usuario,
-    deletar_usuario
+    deletar_usuario_e_dados
 )
 
 def create_usuario_service(db: Session, dados: Usuario):
