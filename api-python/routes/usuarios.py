@@ -6,7 +6,7 @@ from services.usuarios_service import (
     get_usuarios_service,
     get_usuario_service,
     update_usuario_service,
-    delete_usuario_service
+    deletar_usuario_e_dados
 )
 from models.usuario_model import Usuario
 from schemas.usuario_schema import Usuario
@@ -46,8 +46,8 @@ async def atualizar_usuario(codigo: int, dado_atualizado: Usuario, db: Session =
         raise HTTPException(status_code=400, detail=str(e))
 
 @router.delete("/{codigo}")
-async def deletar_usuario(codigo: int, db: Session = Depends(get_db)):
+async def deletar_usuario_e_dados(codigo: int, db: Session = Depends(get_db)):
     try:
-        return delete_usuario_service(db, codigo)
+        return deletar_usuario_e_dados(db, codigo)
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
