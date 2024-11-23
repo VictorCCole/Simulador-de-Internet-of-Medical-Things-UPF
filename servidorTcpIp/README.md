@@ -42,3 +42,37 @@ PORTA = 65432       # Número da porta
 
 Para interromper o servidor enquanto ele está em execução, basta pressionar **CTRL + C** no terminal onde o servidor está rodando. 
 Isso interromperá a execução do servidor de forma segura.
+
+---
+
+### Configuração do Banco de Dados
+
+No arquivo `db/database.py`, você encontrará a variável `DATABASE_URL` com o seguinte valor:
+
+```python
+DATABASE_URL = "postgresql://username:password@localhost:5432/dbname"
+```
+
+Para usar a API em produção ou em outro ambiente, você precisa modificar essa variável com as credenciais corretas do seu banco de dados. Altere `username`, `password`, `localhost`, `5432` (porta) e `dbname` (nome do banco de dados) para os valores adequados ao seu ambiente.
+
+Exemplo de configuração para banco de dados em nuvem:
+
+```python
+DATABASE_URL = "postgresql://myuser:mypassword@mydbhost:5432/mydatabase"
+```
+
+Adicione o parâmetro `?sslmode=require` à URL se o banco exigir conexões seguras (caso em Nuvem):
+
+```python
+DATABASE_URL = "postgresql://username:password@db-instance-endpoint:5432/dbname?sslmode=require"
+```
+
+Se usarmos variáveis de ambiente em vez de codificar diretamente:
+
+```python
+import os
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+```
+
+---
