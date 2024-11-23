@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from models.usuario_model import UsuarioDB
 from schemas.usuario_schema import Usuario
+from models.dadoscoletados_model import DadosColetados
 
 def obter_usuarios(db: Session):
     return db.query(UsuarioDB).all()
@@ -27,10 +28,17 @@ def atualizar_usuario(db: Session, codigo: int, dados_atualizados: Usuario):
     db.refresh(dado)
     return dado
 
-def deletar_usuario(db: Session, codigo: int):
-    dado = obter_usuario_por_seq(db, codigo)
-    if not dado:
+from sqlalchemy.orm import Session
+from app.models.user_model import Usuario
+from app.models.dadoscoletados_model import DadosColetados
+
+def deletar_usuario_e_dados(db: Session, codigo: int):
+    usuario = db.query(Usuario).filter(Usuario.codigo == codigo).first()        
+    if not usuario:
         return None
-    db.delete(dado)
+    dados = db.query(DadosColetados).filter(DadosColetados.codigo == codigo).all()     
+    if dados:
+        db.query(DadosColetados).filter(DadosColetados.codigo == codigo).delete()
+    db.delete(usuario)
     db.commit()
-    return dado
+    return usuario   
