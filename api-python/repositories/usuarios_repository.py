@@ -36,9 +36,9 @@ def deletar_usuario_e_dados(db: Session, codigo: int):
     usuario = db.query(Usuario).filter(Usuario.codigo == codigo).first()        
     if not usuario:
         return None
-    dados = db.query(DadosColetados).filter(DadosColetados.codigo == codigo).all()     
+    dados = db.query(DadosColetadosDB).filter(DadosColetadosDB.codigo == codigo).all()     
     if dados:
-        db.query(DadosColetados).filter(DadosColetados.codigo == codigo).delete()
+        db.query(DadosColetadosDB).filter(DadosColetadosDB.codigo == codigo).delete()
     db.delete(usuario)
     db.commit()
     return usuario   
