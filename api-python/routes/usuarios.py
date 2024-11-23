@@ -24,10 +24,10 @@ def get_db():
 async def obter_usuarios(db: Session = Depends(get_db)):
     return get_usuarios_service(db)
 
-@router.get("/{seq}")
-async def obter_usuario_por_seq(seq: int, db: Session = Depends(get_db)):
+@router.get("/{codigo}")
+async def obter_usuario_por_seq(codigo: int, db: Session = Depends(get_db)):
     try:
-        return get_usuario_service(db, seq)
+        return get_usuario_service(db, codigo)
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
 
@@ -38,16 +38,16 @@ async def criar_usuario(dado: Usuario, db: Session = Depends(get_db)):
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-@router.put("/{seq}")
-async def atualizar_usuario(seq: int, dado_atualizado: Usuario, db: Session = Depends(get_db)):
+@router.put("/{codigo}")
+async def atualizar_usuario(codigo: int, dado_atualizado: Usuario, db: Session = Depends(get_db)):
     try:
-        return update_usuario_service(db, seq, dado_atualizado)
+        return update_usuario_service(db, codigo, dado_atualizado)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-@router.delete("/{seq}")
-async def deletar_usuario(seq: int, db: Session = Depends(get_db)):
+@router.delete("/{codigo}")
+async def deletar_usuario(codigo: int, db: Session = Depends(get_db)):
     try:
-        return delete_usuario_service(db, seq)
+        return delete_usuario_service(db, codigo)
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
