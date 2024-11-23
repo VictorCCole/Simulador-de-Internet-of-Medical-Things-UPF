@@ -21,5 +21,5 @@ def get_usuario_service(db: Session, usuario_id: int):
 def update_usuario_service(db: Session, usuario_id: int, dados: Usuario):
     return atualizar_usuario(db, usuario_id, dados)
 
-def delete_usuario_service(db: Session, usuario_id: int):
-    return deletar_usuario(db, usuario_id)
+def deletar_usuario_e_dados(db: Session, usuario_id: int):
+    return deletar_usuario_e_dados(db, usuario_id)
