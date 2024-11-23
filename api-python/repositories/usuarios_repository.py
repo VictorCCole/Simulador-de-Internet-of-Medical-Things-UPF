@@ -28,10 +28,6 @@ def atualizar_usuario(db: Session, codigo: int, dados_atualizados: Usuario):
     db.refresh(dado)
     return dado
 
-from sqlalchemy.orm import Session
-from app.models.user_model import Usuario
-from app.models.dadoscoletados_model import DadosColetados
-
 def deletar_usuario_e_dados(db: Session, codigo: int):
     usuario = db.query(Usuario).filter(Usuario.codigo == codigo).first()        
     if not usuario:
