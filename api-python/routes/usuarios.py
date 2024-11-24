@@ -6,10 +6,9 @@ from services.usuarios_service import (
     get_usuarios_service,
     get_usuario_service,
     update_usuario_service,
-    deletar_usuario_e_dados
+    deletar_usuario
 )
-from models.usuario_model import Usuario
-from schemas.usuario_schema import Usuario
+from schemas.usuario_schema import Usuario, UsuarioAddUpdate
 
 router = APIRouter()
 
@@ -32,22 +31,25 @@ async def obter_usuario_por_seq(codigo: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail=str(e))
 
 @router.post("/")
-async def criar_usuario(dado: Usuario, db: Session = Depends(get_db)):
+async def criar_usuario(dado: UsuarioAddUpdate, db: Session = Depends(get_db)):
     try:
         return create_usuario_service(db, dado)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
 @router.put("/{codigo}")
-async def atualizar_usuario(codigo: int, dado_atualizado: Usuario, db: Session = Depends(get_db)):
+async def atualizar_usuario(codigo: int, dado_atualizado: UsuarioAddUpdate, db: Session = Depends(get_db)):
     try:
         return update_usuario_service(db, codigo, dado_atualizado)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
 @router.delete("/{codigo}")
-async def deletar_usuario_e_dados(codigo: int, db: Session = Depends(get_db)):
+async def excluir_usuario(codigo: int, db: Session = Depends(get_db)):
     try:
-        return deletar_usuario_e_dados(db, codigo)
+        usuario = deletar_usuario(db, codigo)
+        if not usuario:
+            raise HTTPException(status_code=404, detail="Usuário não encontrado para deletar")
+        return usuario
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
