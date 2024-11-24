@@ -24,7 +24,164 @@ uvicorn main:app --reload
 
 ## Usuario
 
-Em andamento...
+Esta API fornece acesso a informações sobre usuários cadastrados, permitindo operações de **GET**, **POST**, **PUT** e **DELETE**. Abaixo estão as instruções detalhadas sobre como usar os diferentes endpoints disponíveis para interagir com os usuários.
+
+### Endpoints
+
+A base URL da API em fase de teste é:  
+`http://127.0.0.1:8000/usuarios/`  
+IDs fornecidos devem ser do tipo inteiro.
+
+#### 1. **GET /usuarios/**
+
+Este endpoint retorna todos os usuários cadastrados.
+
+**Exemplo de resposta bem-sucedida (200):**
+```json
+[
+    {
+        "Nome": "João da Silva Quinto",
+        "Nascimento": "2000-05-15",
+        "codigo": 5,
+        "Latitude": -11.685,
+        "Sexo": "M",
+        "Longitude": -11.803
+    },
+    {
+        "Nome": "João da Silva Qceiro",
+        "Nascimento": "1990-05-15",
+        "codigo": 4,
+        "Latitude": -11.685,
+        "Sexo": "M",
+        "Longitude": -11.803
+    },
+    {
+        "Nome": "João da Silva 4",
+        "Nascimento": "1990-05-15",
+        "codigo": 6,
+        "Latitude": -29.685,
+        "Sexo": "M",
+        "Longitude": -53.803
+    }
+]
+```
+
+Caso não haja usuários cadastrados, a resposta será:
+```json
+200 []
+```
+
+#### 2. **GET /usuarios/{id}**
+
+Este endpoint retorna um único usuário com base no ID fornecido.
+
+**Exemplo de resposta bem-sucedida (200):**
+```json
+{
+    "Nome": "João da Silva Qceiro",
+    "Nascimento": "1990-05-15",
+    "codigo": 4,
+    "Latitude": -11.685,
+    "Sexo": "M",
+    "Longitude": -11.803
+}
+```
+
+**Caso o usuário não seja encontrado, a resposta será:**
+```json
+{
+    "detail": "Usuário não encontrado"
+}
+```
+Resposta com código de status **404**.
+
+#### 3. **DELETE /usuarios/{id}**
+
+Este endpoint permite deletar um usuário com base no ID fornecido.
+
+**Exemplo de resposta bem-sucedida (200) após deletar um usuário:**
+```json
+{
+    "Nome": "João da Silva Qceiro",
+    "Nascimento": "1990-05-15",
+    "codigo": 6,
+    "Latitude": -11.685,
+    "Sexo": "M",
+    "Longitude": -11.803
+}
+```
+
+**Caso o usuário não seja encontrado para deletar, a resposta será:**
+```json
+{
+    "detail": "Usuário não encontrado para deletar"
+}
+```
+Resposta com código de status **404**.
+
+#### 4. **PUT /usuarios/{id}**
+
+Este endpoint permite atualizar um usuário com base no ID fornecido. Apenas os campos especificados no corpo da requisição serão atualizados.
+
+**Exemplo de corpo de requisição (JSON):**
+```json
+{
+    "Nome": "João da Silva Qceiro",
+    "Sexo": "M",
+    "Nascimento": "1990-05-15",
+    "Latitude": -11.685,
+    "Longitude": -11.803
+}
+```
+
+**Exemplo de resposta bem-sucedida (200) após atualização:**
+```json
+{
+    "Nome": "João da Silva Qceiro",
+    "Nascimento": "1990-05-15",
+    "codigo": 4,
+    "Latitude": -11.685,
+    "Sexo": "M",
+    "Longitude": -11.803
+}
+```
+
+**Caso o usuário não seja encontrado para atualizar, a resposta será:**
+```json
+{
+    "detail": "Usuário não encontrado para atualizar"
+}
+```
+Resposta com código de status **404**.
+
+#### 5. **POST /usuarios/**
+
+Este endpoint permite adicionar um novo usuário ao sistema.
+
+**Exemplo de corpo de requisição (JSON):**
+```json
+{
+    "Nome": "João da Silva 4",
+    "Sexo": "M",
+    "Nascimento": "1990-05-15",
+    "Latitude": -29.685,
+    "Longitude": -53.803
+}
+```
+
+**Exemplo de resposta bem-sucedida (200):**
+```json
+{
+    "Nome": "João da Silva 4",
+    "Nascimento": "1990-05-15",
+    "codigo": 6,
+    "Latitude": -29.685,
+    "Sexo": "M",
+    "Longitude": -53.803
+}
+```
+
+Caso os dados não estejam de acordo com a especificação, será retornado um erro **422 - Unprocessable Entity**.
 
 <br/>
 
