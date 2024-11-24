@@ -97,115 +97,113 @@ export function EditDataTable() {
   }
 
   return (
-    <div className="rounded-md border max-w-2xl mx-auto">
+    <div className="rounded-md border max-w-full mx-auto p-4">
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Usuario</TableHead>
-            <TableHead>DataHora</TableHead>
-            <TableHead>Tipo</TableHead>
-            <TableHead>Valor1</TableHead>
-            <TableHead>Valor2</TableHead>
-            <TableHead>EmCasa</TableHead>
-            <TableHead>Ações</TableHead>
+            <TableHead className="w-[80px]">Usuario</TableHead>
+            <TableHead className="w-[140px]">DataHora</TableHead>
+            <TableHead className="w-[90px]">Tipo</TableHead>
+            <TableHead className="w-[90px]">Valor1</TableHead>
+            <TableHead className="w-[90px]">Valor2</TableHead>
+            <TableHead className="w-[90px]">EmCasa</TableHead>
+            <TableHead className="w-[120px]">Ações</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {data.map((item) => (
-            <TableRow key={item.seq}>
-              {editingId === item.seq ? (
-                <>
-                  <TableCell>
-                    <Input 
-                      name="codigo" 
-                      type="number"
-                      value={editForm?.codigo} 
-                      onChange={handleInputChange}
-                      className="bg-white"
-                    />
-                  </TableCell>
-                  <TableCell>{formatDataHora(item.DataHora)}</TableCell>
-                  <TableCell>
-                    <Select 
-                      value={String(editForm?.Tipo)} 
-                      onValueChange={(value) => handleSelectChange('Tipo', value)}
-                    >
-                      <SelectTrigger className="bg-white">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="1">Tipo 1</SelectItem>
-                        <SelectItem value="2">Tipo 2</SelectItem>
-                        <SelectItem value="3">Tipo 3</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </TableCell>
-                  <TableCell>
-                    <Input 
-                      name="Valor1" 
-                      type="number"
-                      step="0.01"
-                      value={editForm?.Valor1} 
-                      onChange={handleInputChange}
-                      className="bg-white"
-                    />
-                  </TableCell>
-                  <TableCell>
-                    <Input 
-                      name="Valor2" 
-                      type="number"
-                      step="0.01"
-                      value={editForm?.Valor2} 
-                      onChange={handleInputChange}
-                      className="bg-white"
-                    />
-                  </TableCell>
-                  <TableCell>
-                    <Select 
-                      value={editForm?.EmCasa ? 'sim' : 'nao'} 
-                      onValueChange={(value) => handleSelectChange('EmCasa', value)}
-                    >
-                      <SelectTrigger className="bg-white">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="sim">Sim</SelectItem>
-                        <SelectItem value="nao">Não</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex gap-2">
-                      <Button onClick={handleSave} size="icon" variant="ghost">
-                        <Save className="h-4 w-4" />
-                      </Button>
-                      <Button onClick={handleCancel} size="icon" variant="ghost">
-                        <X className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </TableCell>
-                </>
-              ) : (
-                <>
-                  <TableCell>{item.codigo}</TableCell>
-                  <TableCell>{formatDataHora(item.DataHora)}</TableCell>
-                  <TableCell>{item.Tipo}</TableCell>
-                  <TableCell>{item.Valor1}</TableCell>
-                  <TableCell>{item.Valor2 ?? '-'}</TableCell>
-                  <TableCell>{item.EmCasa ? 'Sim' : 'Não'}</TableCell>
-                  <TableCell>
-                    <div className="flex gap-2">
-                      <Button onClick={() => handleEdit(item)} size="icon" variant="ghost">
-                        <Pencil className="h-4 w-4" />
-                      </Button>
-                      <Button onClick={() => item.seq && handleDelete(item.seq)} size="icon" variant="ghost">
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </TableCell>
-                </>
-              )}
-            </TableRow>
+            editingId === item.seq ? (
+              <TableRow key={`editing-${item.seq}`}>
+                <TableCell>
+                  <Input 
+                    name="codigo" 
+                    type="number"
+                    value={editForm?.codigo} 
+                    onChange={handleInputChange}
+                    className="bg-white w-full"
+                  />
+                </TableCell>
+                <TableCell>{formatDataHora(item.DataHora)}</TableCell>
+                <TableCell>
+                  <Select 
+                    value={String(editForm?.Tipo)} 
+                    onValueChange={(value) => handleSelectChange('Tipo', value)}
+                  >
+                    <SelectTrigger className="bg-white w-full">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="1">Tipo 1</SelectItem>
+                      <SelectItem value="2">Tipo 2</SelectItem>
+                      <SelectItem value="3">Tipo 3</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </TableCell>
+                <TableCell>
+                  <Input 
+                    name="Valor1" 
+                    type="number"
+                    step="0.01"
+                    value={editForm?.Valor1} 
+                    onChange={handleInputChange}
+                    className="bg-white w-full"
+                  />
+                </TableCell>
+                <TableCell>
+                  <Input 
+                    name="Valor2" 
+                    type="number"
+                    step="0.01"
+                    value={editForm?.Valor2} 
+                    onChange={handleInputChange}
+                    className="bg-white w-full"
+                  />
+                </TableCell>
+                <TableCell>
+                  <Select 
+                    value={editForm?.EmCasa ? 'sim' : 'nao'} 
+                    onValueChange={(value) => handleSelectChange('EmCasa', value)}
+                  >
+                    <SelectTrigger className="bg-white w-full">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="sim">Sim</SelectItem>
+                      <SelectItem value="nao">Não</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </TableCell>
+                <TableCell>
+                  <div className="flex gap-2">
+                    <Button onClick={handleSave} size="icon" variant="ghost">
+                      <Save className="h-4 w-4" />
+                    </Button>
+                    <Button onClick={handleCancel} size="icon" variant="ghost">
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </TableCell>
+              </TableRow>
+            ) : (
+              <TableRow key={item.seq}>
+                <TableCell>{item.codigo}</TableCell>
+                <TableCell>{formatDataHora(item.DataHora)}</TableCell>
+                <TableCell>{item.Tipo}</TableCell>
+                <TableCell>{item.Valor1}</TableCell>
+                <TableCell>{item.Valor2 ?? '-'}</TableCell>
+                <TableCell>{item.EmCasa ? 'Sim' : 'Não'}</TableCell>
+                <TableCell>
+                  <div className="flex gap-2">
+                    <Button onClick={() => handleEdit(item)} size="icon" variant="ghost">
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                    <Button onClick={() => item.seq && handleDelete(item.seq)} size="icon" variant="ghost">
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </TableCell>
+              </TableRow>
+            )
           ))}
         </TableBody>
       </Table>

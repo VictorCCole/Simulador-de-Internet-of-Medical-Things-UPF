@@ -1,5 +1,3 @@
-"use client"
-
 import { DataTable } from "@/components/dashboard/data-table"
 
 const sampleData = [
@@ -25,7 +23,7 @@ export default function Page() {
   return (
     <div className="space-y-4">
       <h1 className="text-2xl font-bold text-center text-white bg-[#6587FF] py-2 rounded-md">DADOS COLETADOS</h1>
-      <DataTable data={sampleData} />
+      <DataTable data={sampleData.map((item, index) => ({...item, key: index}))} />
     </div>
   )
 }

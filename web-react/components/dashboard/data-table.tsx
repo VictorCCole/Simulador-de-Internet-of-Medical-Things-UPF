@@ -9,13 +9,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { ArrowUpDown } from 'lucide-react'
+import { ArrowUpDown, Loader2 } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { DadosColetados, dadosColetadosService } from "@/services/api"
 import { format } from "date-fns"
 
 export function DataTable() {
   const [data, setData] = useState<DadosColetados[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [sortKey, setSortKey] = useState<keyof DadosColetados>("DataHora")
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc")
 
@@ -25,10 +27,15 @@ export function DataTable() {
 
   const loadData = async () => {
     try {
+      setLoading(true)
+      setError(null)
       const response = await dadosColetadosService.getAll()
       setData(response)
     } catch (error) {
+      setError('Erro ao carregar dados. Por favor, tente novamente.')
       console.error('Erro ao carregar dados:', error)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -50,6 +57,33 @@ export function DataTable() {
     return format(new Date(dataHora), "dd/MM/yyyy HH:mm")
   }
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center p-8">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="text-center p-8 text-red-500">
+        {error}
+        <Button onClick={loadData} variant="outline" className="ml-2">
+          Tentar novamente
+        </Button>
+      </div>
+    )
+  }
+
+  if (data.length === 0) {
+    return (
+      <div className="text-center p-8 text-muted-foreground">
+        Nenhum dado encontrado
+      </div>
+    )
+  }
+
   return (
     <div className="rounded-md border">
       <Table>
@@ -62,7 +96,7 @@ export function DataTable() {
               </Button>
             </TableHead>
             <TableHead>
-              DataHora {" "}
+              Data e Hora {" "}
               <Button variant="ghost" onClick={() => sortData("DataHora")}>
                 <ArrowUpDown className="h-4 w-4" />
               </Button>
@@ -85,12 +119,12 @@ export function DataTable() {
                 <ArrowUpDown className="h-4 w-4" />
               </Button>
             </TableHead>
-            <TableHead>EmCasa</TableHead>
+            <TableHead>Em casa?</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {data.map((row) => (
-            <TableRow key={row.seq}>
+            <TableRow key={`${row.codigo}-${row.DataHora}`}>
               <TableCell>{row.codigo}</TableCell>
               <TableCell>{formatDataHora(row.DataHora)}</TableCell>
               <TableCell>{row.Tipo}</TableCell>
