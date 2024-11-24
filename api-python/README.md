@@ -20,7 +20,7 @@ Para rodar a API use:
 uvicorn main:app --reload
 ```
 
-## Usuario
+## Usuarios
 
 Esta API fornece acesso a informações sobre usuários cadastrados, permitindo operações de **GET**, **POST**, **PUT** e **DELETE**. Abaixo estão as instruções detalhadas sobre como usar os diferentes endpoints disponíveis para interagir com os usuários.
 
