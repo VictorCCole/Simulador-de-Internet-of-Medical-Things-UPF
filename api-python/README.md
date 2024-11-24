@@ -126,7 +126,7 @@ Este endpoint permite atualizar um usuário com base no ID fornecido. Apenas os 
 **Exemplo de corpo de requisição (JSON):**
 ```json
 {
-    "Nome": "João da Silva Qceiro",
+    "Nome": "João da Silva Terceiro",
     "Sexo": "M",
     "Nascimento": "1990-05-15",
     "Latitude": -11.685,
@@ -137,7 +137,7 @@ Este endpoint permite atualizar um usuário com base no ID fornecido. Apenas os 
 **Exemplo de resposta bem-sucedida (200) após atualização:**
 ```json
 {
-    "Nome": "João da Silva Qceiro",
+    "Nome": "João da Silva Terceiro",
     "Nascimento": "1990-05-15",
     "codigo": 4,
     "Latitude": -11.685,
