@@ -1,74 +1,117 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+export default function App() {
+  const router = useRouter(); // Instanciar o roteador para navegação
 
-export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      {/* Barra Superior */}
+      <View style={styles.header}>
+        <View style={styles.iconGroup}>
+          <TouchableOpacity
+            style={styles.iconButton}
+            onPress={() => router.push('/create-data')}
+          >
+            <Ionicons name="add-circle-outline" size={24} color="white" />
+          </TouchableOpacity>
+          <Text style={styles.iconText}>Criar Dados</Text>
+        </View>
+
+        <View style={styles.iconGroup}>
+          <TouchableOpacity style={styles.iconButton}>
+            <Ionicons name="grid-outline" size={24} color="white" />
+          </TouchableOpacity>
+          <Text style={styles.iconText}>Dashboard</Text>
+        </View>
+
+        <View style={styles.iconGroup}>
+          <TouchableOpacity style={styles.iconButton}>
+            <Ionicons name="pencil-outline" size={24} color="white" />
+          </TouchableOpacity>
+          <Text style={styles.iconText}>Editar Dados</Text>
+        </View>
+      </View>
+
+      {/* Título de Dados Coletados */}
+      <View style={styles.titleContainer}>
+        <Text style={styles.titleText}>DADOS COLETADOS</Text>
+      </View>
+
+      {/* Cabeçalho da tabela */}
+      <View style={styles.tableHeader}>
+        <Text style={styles.tableHeaderText}>Usuário</Text>
+        <Text style={styles.tableHeaderText}>Data e Hora</Text>
+        <Text style={styles.tableHeaderText}>Tipo</Text>
+        <Text style={styles.tableHeaderText}>Valor1</Text>
+        <Text style={styles.tableHeaderText}>Valor2</Text>
+        <Text style={styles.tableHeaderText}>Em Casa</Text>
+      </View>
+
+      {/* Área Central */}
+      <View style={styles.content}>
+        <Text style={styles.placeholderText}>Nenhum dado coletado ainda.</Text>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  container: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+  },
+  header: {
     flexDirection: 'row',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    gap: 8,
+    backgroundColor: '#4682B4',
+    paddingVertical: 10,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  iconGroup: {
+    alignItems: 'center',
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  iconButton: {
+    padding: 10,
+  },
+  iconText: {
+    color: 'white',
+    fontSize: 12,
+    marginTop: 5,
+  },
+  titleContainer: {
+    backgroundColor: '#4682B4',
+    paddingVertical: 10,
+    alignItems: 'center',
+  },
+  titleText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  tableHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    backgroundColor: '#e8e8e8',
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+  tableHeaderText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#333',
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
+  },
+  placeholderText: {
+    color: '#999',
+    fontSize: 16,
   },
 });

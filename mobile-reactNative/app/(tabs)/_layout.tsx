@@ -25,7 +25,9 @@ export default function TabLayout() {
           },
           default: {},
         }),
-      }}>
+      }}
+    >
+      {/* Tela inicial - Home */}
       <Tabs.Screen
         name="index"
         options={{
@@ -33,11 +35,27 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
         }}
       />
+
+      {/* Aba "Explore" */}
       <Tabs.Screen
         name="explore"
         options={{
           title: 'Explore',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+        }}
+      />
+
+      {/* Ocultar rotas não pertencentes ao tab bar */}
+      <Tabs.Screen
+        name="create-data"
+        options={{
+          href: null, // Remove "create-data" do tab bar
+        }}
+      />
+      <Tabs.Screen
+        name="view-data"
+        options={{
+          href: null, // Remove "view-data" do tab bar
         }}
       />
     </Tabs>
