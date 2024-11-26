@@ -81,9 +81,24 @@ class DataSenderApp:
         self.clear_list_button.pack(padx=5, pady=5)
 
     def connect_server(self):
-        host = self.host.get()
-        port = self.port.get()
         try:
+            host = self.host.get()
+            port = self.port.get()
+
+            if not host:
+                messagebox.showerror("Erro", "O endereço IP não pode estar vazio.")
+                return
+
+            try:
+                socket.inet_aton(host)
+            except socket.error:
+                messagebox.showerror("Erro", "O endereço IP informado é inválido.")
+                return
+
+            if not port or not isinstance(port, int) or port < 1:
+                messagebox.showerror("Erro", "Informe uma porta válida (> 1 ...).")
+                return
+
             self.cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.cliente.connect((host, port))
             messagebox.showinfo("Conexão", f"Conectado ao servidor {host}:{port}.")
