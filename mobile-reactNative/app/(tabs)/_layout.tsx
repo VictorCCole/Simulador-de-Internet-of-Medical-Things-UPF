@@ -10,6 +10,8 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  console.log("Página Editar Dados carregada!");
+
 
   return (
     <Tabs
@@ -20,14 +22,12 @@ export default function TabLayout() {
         tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
           ios: {
-            // Use a transparent background on iOS to show the blur effect
             position: 'absolute',
           },
           default: {},
         }),
       }}
     >
-      {/* Tela inicial - Home */}
       <Tabs.Screen
         name="index"
         options={{
@@ -35,27 +35,18 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
         }}
       />
-
-      {/* Aba "Explore" */}
       <Tabs.Screen
-        name="explore"
+        name="cadastrar-usuario"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-
-      {/* Ocultar rotas não pertencentes ao tab bar */}
-      <Tabs.Screen
-        name="create-data"
-        options={{
-          href: null, // Remove "create-data" do tab bar
+          title: 'Cadastrar Usuário',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.add" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="view-data"
+        name="editar-dados"
         options={{
-          href: null, // Remove "view-data" do tab bar
+          title: 'Editar Dados',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="pencil" color={color} />,
         }}
       />
     </Tabs>
