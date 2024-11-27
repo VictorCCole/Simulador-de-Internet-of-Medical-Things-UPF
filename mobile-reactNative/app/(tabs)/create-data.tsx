@@ -33,6 +33,12 @@ export default function CreateDataScreen() {
     },
   });
 
+  const tipos = [
+      { id: 1, label: 'Pressão Arterial' },
+      { id: 2, label: 'SPO2 e Frequência Cardíaca' },
+      { id: 3, label: 'Temperatura Corporal' },
+    ];
+
   const handleCreate = async () => {
     try {
       // Validar campos obrigatórios
@@ -40,12 +46,14 @@ export default function CreateDataScreen() {
         Alert.alert('Erro', 'Preencha todos os campos obrigatórios (*).');
         return;
       }
+
+  console.log("Victor ", tipos)
   
       // Dados que serão enviados para a API
       const dado = {
-        Codigo: parseInt(codigoUsuario, 10), // Código do usuário como número inteiro
+        codigo: parseInt(codigoUsuario, 10), // Código do usuário como número inteiro
         DataHora: new Date().toISOString(), // Data no formato ISO
-        Tipo: parseInt(tipo, 10), // Tipo como número inteiro
+        Tipo: parseInt("1", 10), // Tipo como número inteiro
         Valor1: parseFloat(valor1), // Valor1 como número decimal
         Valor2: valor2 ? parseFloat(valor2) : 0, // Valor2 como número decimal (0 se vazio)
         EmCasa: emCasa, // Booleano: true ou false
@@ -90,11 +98,7 @@ export default function CreateDataScreen() {
   
   
 
-  const tipos = [
-    { id: 1, label: 'Pressão Arterial' },
-    { id: 2, label: 'SPO2 e Frequência Cardíaca' },
-    { id: 3, label: 'Temperatura Corporal' },
-  ];
+
   
 
   const handleSelectTipo = (selectedTipo) => {

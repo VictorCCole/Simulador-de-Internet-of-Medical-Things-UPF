@@ -56,10 +56,12 @@ export default function CadastrarUsuarioScreen() {
       return;
     }
 
+const dataFormatada = formatDateToPost(dataNascimento);
+
     const usuario = {
       codigo,
       nome,
-      dataNascimento,
+      dataNascimento: dataFormatada,
       sexo,
       latitude,
       longitude,
@@ -79,6 +81,12 @@ export default function CadastrarUsuarioScreen() {
     { id: '2', label: 'Masculino' },
     { id: '3', label: 'Outro' },
   ];
+
+    const formatDateToPost = (date) => {
+      // Espera que o formato da data seja dd/mm/yyyy
+      const [day, month, year] = date.split('/');
+      return `${year}-${month}-${day}`; // Formato yyyy-mm-dd
+    };
 
   return (
     <KeyboardAvoidingView
@@ -110,19 +118,19 @@ export default function CadastrarUsuarioScreen() {
 
           {/* Campo Data de Nascimento */}
           <Text style={styles.label}>Data de Nascimento</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="dd/mm/aaaa"
-            value={dataNascimento}
-            keyboardType="numeric"
-            onChangeText={(text) =>
-              setDataNascimento(
-                text
-                  .replace(/[^0-9/]/g, '')
-                  .replace(/(\d{2})(\d{2})(\d{4})/, '$1/$2/$3')
-              )
-            }
-          />
+                <TextInput
+                  style={styles.input}
+                  placeholder="dd/mm/aaaa"
+                  value={dataNascimento}
+                  keyboardType="numeric"
+                  onChangeText={(text) => {
+                    // Formatação da data conforme o formato desejado
+                    const formattedDate = text
+                      .replace(/[^0-9/]/g, '') // Remove qualquer caractere que não seja número ou barra
+                      .replace(/(\d{2})(\d{2})(\d{4})/, '$1/$2/$3'); // Formata a data para dd/mm/yyyy
+                    setDataNascimento(formattedDate); // Atualiza o valor da data no formato dd/mm/yyyy
+                  }}
+                />
 
           {/* Campo Sexo */}
           <Text style={styles.label}>Escolha seu Sexo</Text>
